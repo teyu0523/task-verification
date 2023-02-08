@@ -1,0 +1,21 @@
+name: Verify action
+
+on: 
+  pull_request: 
+    types:  [opened, reopened, edit]
+  workflow_dispatch:
+
+jobs:
+  tasks-verification-job:
+    runs-on: ubuntu-latest
+    name: Job to verify PR tasks completion
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: tasks verification action step
+        id: tasks-verified
+        uses: ./ 
+        with: 
+          status-types: 'label/context-string'
+      - name: get output
+        run: echo "The tasks is complete = ${{ steps.tasks-verified.outputs.tasks-complete }}"
