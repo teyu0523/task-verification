@@ -1,0 +1,45 @@
+name: 'Hello World'
+description: 'Greet someone'
+inputs:
+  status-types:  # id of input
+    description: 'The tasks check if the result is success/failure'
+    required: true
+    default: 'label' 
+    type: choice
+    options:
+      - label
+      - context-string
+      - label/context-string
+  success-status:
+    description: 'The status result on success tasks validation'
+    required: false
+    default: 'Task complete'
+  failure-status:
+    description: 'The status result on failure tasks validation'
+    required: false
+    default: 'Task incomplete'
+  # Specify the below input if unique label and context-string are desirable. 
+  success-label-status:
+    description: 'The label status result on success tasks validation'
+    required: false
+    default: ''
+  failure-label-status:
+    description: 'The label status result on failure tasks validation'
+    required: false
+    default: ''
+  success-context-string-status:
+    description: 'The context-string status result on success tasks validation'
+    required: false
+    default: ''
+  failure-context-string-status:
+    description: 'The context-string status result on failure tasks validation'
+    required: false
+    default: ''
+
+
+outputs:
+  tasks-complete:
+    description: "Return if tasks are complete"
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
