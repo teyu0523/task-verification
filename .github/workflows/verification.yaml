@@ -1,6 +1,11 @@
 name: Verify action
 
-on: pull_request
+on: 
+  push:
+    branches:
+      - 'main'
+  pull_request: 
+    types:  [opened, reopened, edit]
 
 jobs:
   tasks-verification-job:
