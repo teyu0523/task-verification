@@ -50,15 +50,48 @@ async function getFailureContextStringStatus() {
 }
 
 async function setLabelStatus(status) {
-  console.log("Apply label status: ${status}");
+  console.log("Apply label status: %s", status);
 }
 
 async function removeLabelStatus(status) {
-  console.log("Remove label status: ${status}");
+  console.log("Remove label status: %s", status);
 }
 
 async function setContextStringStatus(status) {
-  console.log("Apply context string status: ${status}");
+  console.log("Apply context string status: %s", status);
+}
+
+async function evaluateTasksStatus() {
+    const body = github.context.payload.pull_request?.body
+    const regexTaskComplete = /^- \[x\].*/g;
+    const regexTaskIncomplete = /^- \[x\].*/g;
+
+    var lines = body.split("\r\n");
+    var foundIncomplete = false
+    var foundComplete = false
+
+    for (var i = 0; i < arr.length; i++)
+    {
+      foundIncomplete = lines[i].match(regexTaskIncomplete);
+      console.debug("Evaluating line: %s", lines[i])
+      if (foundIncomplete) {
+        console.debug("  - Incomplete task")
+        break;
+      } else {
+        console.debug("  - complete task")
+        foundComplete = lines[i].match(regexTaskComplete);
+      }
+    }
+
+    if (!foundIncomplete && !foundComplete) {
+      console.debug("No task found");
+    }
+
+    if (!foundIncomplete) {
+      tasksCompleted = true
+    }
+
+    return taskCompleted
 }
 
 async function run() 
@@ -67,11 +100,10 @@ async function run()
     // inputs
     const statusTypes = core.getInput('status-types')
 
-    const body = github.context.payload.pull_request?.body
+    const tasksCompleted = evaluateTasksStatus()
 
-    const tasksCompleted = true
 
-    console.log("${body}");
+    console.log(body);
 
     // update the status
     switch (statusTypes) {
@@ -107,7 +139,7 @@ async function run()
         }
         break;
       default:
-        alert("Unsupported type: ${statusTypes}. Do nothing...")
+        alert("Unsupported type: %s. Do nothing...", statusTypes)
     }
   } catch (error) {
     core.setFailed(error.message);
