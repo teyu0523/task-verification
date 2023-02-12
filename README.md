@@ -18,9 +18,7 @@ Create a label, "Task incomplete" or "Task completed" with option to specify cus
 
 ## 
 
-```
-git status
-git add
-git commit
+```yaml
+
 ```
       
