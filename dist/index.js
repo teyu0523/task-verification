@@ -69,6 +69,8 @@ async function run()
 
     const body = github.context.payload.pull_request?.body
 
+    const tasksCompleted = true
+
     console.log("${body}");
 
     // update the status
