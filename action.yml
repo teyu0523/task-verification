@@ -10,31 +10,21 @@ inputs:
       - label
       - context-string
       - label/context-string
-  success-status:
-    description: 'The status result on success tasks validation'
-    required: false
-    default: 'Task complete'
-  failure-status:
-    description: 'The status result on failure tasks validation'
-    required: false
-    default: 'Task incomplete'
-  # Specify the below input if unique label and context-string are desirable. 
+  github-token:
+    description: 'The auth token'
+    required: true
   success-label-status:
     description: 'The label status result on success tasks validation'
     required: false
-    default: ''
+    default: 'tasks-complete'
   failure-label-status:
     description: 'The label status result on failure tasks validation'
     required: false
-    default: ''
-  success-context-string-status:
-    description: 'The context-string status result on success tasks validation'
+    default: 'tasks-incomplete'
+  context-string-status:
+    description: 'The context-string status'
     required: false
-    default: ''
-  failure-context-string-status:
-    description: 'The context-string status result on failure tasks validation'
-    required: false
-    default: ''
+    default: 'tasks-validation'
 
 
 outputs:
