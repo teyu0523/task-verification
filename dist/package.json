@@ -1,14 +1,21 @@
 {
   "name": "task-verification",
   "version": "0.1.0",
-  "main": "main/index.js",
+  "main": "main/index.js",  
+  "keywords": [
+    "github",
+    "action",
+    "checkbox",
+    "task",
+    "pull request"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/teyu0523/task-verification.git"
   },
   "keywords": [],
   "author": "teyu0523",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/teyu0523/task-verification/issues"
   },

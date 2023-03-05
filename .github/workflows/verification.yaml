@@ -1,11 +1,10 @@
 name: Verify action
 
-on: 
-  push:
-    branches:
-      - 'main'
-  pull_request: 
-    types:  [opened, reopened, edit]
+on:
+  pull_request_target:
+    types: [description]
+  pull_request:
+    types: [edited]
 
 jobs:
   tasks-verification-job:
@@ -19,5 +18,6 @@ jobs:
         uses: ./ 
         with: 
           status-types: 'label/context-string'
+          github-token: ${{ secrets.AUTH_TOKEN }}
       - name: get output
         run: echo "The tasks is complete = ${{ steps.tasks-verified.outputs.tasks-complete }}"
